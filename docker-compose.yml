@@ -20,19 +20,24 @@ services:
     volumes:
       - ./src:/var/www/html # [핫리로드] 수정 시 즉시 반영
     environment:
+      - DB_CONNECTION=mysql
       - DB_HOST=db
+      - DB_PORT=${DB_PORT}
+      - DB_DATABASE=${MYSQL_DATABASE}
+      - DB_USERNAME=${MYSQL_USER}
+      - DB_PASSWORD=${MYSQL_PASSWORD}
       - REDIS_HOST=redis
 
   # 3. 데이터베이스 (MariaDB)
   db:
     image: mariadb:10.11 # LTS 버전
     environment:
-      MYSQL_ROOT_PASSWORD: djemals@1234 # 루트 비번
-      MYSQL_DATABASE: laravel_db      # 기본 생성 DB명
-      MYSQL_USER: laravel_user        # 사용자명
-      MYSQL_PASSWORD: fkfkqpf@1234  # 사용자 비번
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
-      - "3306:3306"
+      - "${DB_PORT}:3306"
     volumes:
       - db_data:/var/lib/mysql # [데이터 영구보존] 재실행해도 데이터 유지
 
