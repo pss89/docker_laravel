@@ -1,0 +1,46 @@
+# ---------------------------------
+# 1. 시스템 및 IDE 설정 (공통)
+# ---------------------------------
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# ---------------------------------
+# 2. Docker 관련 (보안 중요!)
+# ---------------------------------
+# 최상위 환경변수 파일 (DB 비번 등이 들어있으므로 절대 올리면 안 됨)
+.env
+.env.local
+docker-compose.override.yml
+
+# ---------------------------------
+# 3. Laravel (src 폴더 하위)
+# ---------------------------------
+# Laravel 환경설정 (여기도 DB 비번이 있으므로 절대 금지)
+src/.env
+src/.env.backup
+src/.env.production
+
+# 의존성 라이브러리 (용량이 크고, composer install로 설치하면 됨)
+src/vendor/
+src/node_modules/
+
+# 빌드된 파일들
+src/public/build/
+src/public/hot/
+src/public/storage
+
+# 스토리지 및 캐시 파일
+src/storage/*.key
+src/storage/framework/cache/data/*
+src/storage/framework/sessions/*
+src/storage/framework/views/*
+src/storage/framework/testing/*
+src/storage/logs/*
+
+# 테스트 및 기타
+src/.phpunit.cache
+src/npm-debug.log
+src/yarn-error.log
