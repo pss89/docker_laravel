@@ -1,18 +1,20 @@
 # 최신 안정화 버전 (LTS 호환)
 FROM php:8.3-fpm
 
-# 시스템 패키지 설치 (git, zip 등 필수 유틸리티)
+# 1. 필수 패키지 설치
 RUN apt-get update && apt-get install -y \
     git \
-    curl \
+    zip \
+    unzip \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
-    zip \
-    unzip
+    libicu-dev \
+    libzip-dev
 
-# PHP 필수 확장 모듈 설치 (MySQL 연동, BCMath 등)
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+# 2. PHP 확장 모듈 설치
+RUN docker-php-ext-configure intl \
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd opcache intl zip
 
 # Composer 설치 (Laravel 필수)
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
