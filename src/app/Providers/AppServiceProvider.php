@@ -5,9 +5,10 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 
 use Illuminate\Support\Facades\Event;
+
 use SocialiteProviders\Manager\SocialiteWasCalled;
-use SocialiteProviders\Kakao\KakaoExtendSocialite;
-use SocialiteProviders\Naver\NaverExtendSocialite;
+use SocialiteProviders\Kakao\KakaoProvider;
+use SocialiteProviders\Naver\Provider as NaverProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,8 +27,8 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Event::listen(SocialiteWasCalled::class, function (SocialiteWasCalled $event) {
-            $event->extendSocialite('kakao', KakaoExtendSocialite::class);
-            $event->extendSocialite('naver', NaverExtendSocialite::class);
+            $event->extendSocialite('kakao', KakaoProvider::class);
+            $event->extendSocialite('naver', NaverProvider::class);
         });
     }
 }

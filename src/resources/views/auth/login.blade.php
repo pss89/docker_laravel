@@ -43,5 +43,17 @@
                 {{ __('Log in') }}
             </x-primary-button>
         </div>
+
+        <div class="mt-4 flex flex-col gap-2">
+            <a href="{{ route('social.redirect', 'kakao') }}" 
+            class="flex items-center justify-center w-full px-4 py-2 bg-[#FEE500] text-[#3c1e1e] rounded-md font-semibold text-sm hover:bg-[#FDD835] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FEE500]">
+                카카오 로그인
+            </a>
+
+            <a href="{{ route('social.redirect', 'naver') }}" 
+                class="flex items-center justify-center w-full px-4 py-2 bg-[#03C75A] text-white rounded-md font-semibold text-sm hover:bg-[#02B150] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#03C75A]">
+                네이버 로그인
+            </a>
+        </div>
     </form>
 </x-guest-layout>
